@@ -87,10 +87,10 @@ void merge(int a[], int l, int m, int r){
         }
     }
     while(i < (int)x.size()){
-        a[l] = x[i]; ++l; ++i;
+        a[l++] = x[i++];
     }
     while(j < (int)y.size()){
-        a[l] = y[j]; ++l; ++j;
+        a[l++] = y[j++];
     }
 }
 
@@ -103,8 +103,54 @@ void mergeSort(int a[], int l, int r){
         merge(a, l, m, r);
     }
 }
+// Do phuc tap O(nlogn)
+//pivot la gia tri o giua day can sap xep
+//phan hoach Hoare
+int partition(int a[], int l, int r){
+    int pivot = a[(l+r)/2];
+    int i = l, j = r;
+    while(1){
+        while(a[i] < pivot) ++i;
+        while(a[j] > pivot) --j;
+        if(i < j) swap(a[i], a[j]);
+        else return j;
+    }
+}
 
+void quickSort(int a[], int l, int r){
+    if(l >= r) return;
+    int p = partition(a, l, r);
+    quickSort(a, l, p);
+    quickSort(a, p+1, r);
+}
 
+//Heap sort O(nlogn)
+//Cac node tu 0 den n/2 - 1 khong phai node la va se su dung heapify tu day
+void heapify(int a[], int n, int i){
+    int largest = i;// chi so cua node co gia tri lon nhat trong cay con dang xet
+    int l = 2*i+1;
+    int r = 2*i+2;
+    if(l < n && a[l] > a[largest]){
+        largest = l;
+    }
+    if(r < n && a[r] > a[largest]){
+        largest = r;
+    }
+    if(largest != i){
+        swap(a[largest], a[i]);
+        heapify(a, n, largest);
+    }
+}
+
+void heapSort(int a[], int n){
+    for(int i = n/2 - 1; i >= 0; i--){
+        heapify(a, n, i);
+    }
+    for(int i = n-1; i >= 0; i--){
+        swap(a[0], a[i]);
+        heapify(a, i , 0);
+    }
+}
 
 int main() {
     int n; cin >> n;
@@ -112,5 +158,8 @@ int main() {
     for(int i = 0; i < n; i++){
         cin >> a[i];
     }
-    insertionSort(a, n);
+    mergeSort(a, 0, n-1);
+    for(int i = 0; i < n; i++){
+        cout << a[i] <<' ';
+    }
 }

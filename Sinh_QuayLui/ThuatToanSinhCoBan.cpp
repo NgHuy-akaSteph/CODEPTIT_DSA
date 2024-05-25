@@ -5,7 +5,7 @@ int n, a[50], stop = 0;
 // 1. Sinh xau nhi phan
 // void ktao() {
 //     for(int i = 1; i <= n; i++){
-//         a[i] == 0;
+//         a[i] = 0;
 //     }
 // }
 
