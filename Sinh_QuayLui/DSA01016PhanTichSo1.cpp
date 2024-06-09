@@ -9,7 +9,7 @@ using namespace std;
 int n, ok, cnt, a[100];
 
 void init(){
-    cnt = 1;
+    cnt = 1;// ban đầu có 1 số là chính nó
     a[1] = n;
 }
 
@@ -21,17 +21,15 @@ void next(){
     if(i == 0) ok = 0;
     else{
         a[i]--;
-        int thieu = cnt-i+1;
-        int x = thieu/a[i];
-        int y = thieu % a[i];
-        cnt = i;
+        int pt = cnt-i+1; // phần còn thiếu của n
+        int x = pt/a[i];    // biểu diễn pt theo số a[i] vừa giảm
+        int y = pt % a[i]; // phần dư của pt chia a[i]
+        cnt = i; // 
         for(int j = 1; j <= x; j++){
-            a[cnt+1] = a[i];
-            ++cnt;
+            a[++cnt] = a[i]; // vừa gán vừa tăng cnt
         }
         if(y){
-            a[cnt+1] = y;
-            ++cnt;
+            a[++cnt] = y; // vừa gán vừa tăng cnt
         }
     }
 }
