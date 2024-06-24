@@ -5,7 +5,8 @@ int n, res = -1e9, s;
 int a[100], v[100], w[100];
 
 void ql(int i, int totalWeight, int totalVal){
-    if(totalWeight > s) return; //Neu totalWeight > s -> dung nhanh chon nay
+    //Neu totalWeight > s -> dung nhanh chon nay
+    if(totalWeight > s) return; // Ki thuat ngat canh
     for(int j = 0; j <= 1; j++){
         a[i] = j;
         if(i == n){
@@ -26,6 +27,8 @@ void ql(int i, int totalWeight, int totalVal){
         }
     }
 }
+
+
 
 int main(){
     cin >> n >> s;
