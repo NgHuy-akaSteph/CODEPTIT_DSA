@@ -8,7 +8,7 @@ bool visited[1001];
 set<int> adj[1001];
 vector<pair<int,int>> el;
 void dfs(int u){
-    visited[u] = true;
+    visited[u] = true; 
     for(int x : adj[u]){
         if(!visited[x]){
             dfs(x);

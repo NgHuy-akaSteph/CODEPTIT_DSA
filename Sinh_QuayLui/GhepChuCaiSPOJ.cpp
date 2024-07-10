@@ -4,6 +4,7 @@ using namespace std;
 int n, a[100];
 bool used[100];
 
+
 bool nguyen_am(int n){
     return (n == 1 || n == 5);// Vi tri tuong ung cua A va E
 }
